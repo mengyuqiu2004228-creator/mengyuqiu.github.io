@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱心爱你 - 祝小猪婷永远开心</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            color: #ff4d6d;
+        }
+        
+        .message {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .heart-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .heart {
+            width: 100px;
+            height: 90px;
+            position: relative;
+            animation: heartbeat 1.2s infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 77, 109, 0.5));
+        }
+        
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            left: 50px;
+            top: 0;
+            width: 50px;
+            height: 80px;
+            background: #ff4d6d;
+            border-radius: 50px 50px 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        
+        .heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .btn-love {
+            background: #ff4d6d;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+        }
+        
+        .btn-love:hover {
+            background: #ff3355;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 77, 109, 0.6);
+        }
+        
+        .btn-happy {
+            background: #ffcc00;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.4);
+        }
+        
+        .btn-happy:hover {
+            background: #ffaa00;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 204, 0, 0.6);
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 77, 109, 0.7);
+            animation: float 15s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        footer {
+            margin-top: 30px;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .message {
+                font-size:1.2rem;
+            }
+            
+            .heart {
+                width: 80px;
+                height: 72px;
+            }
+            
+            .heart:before,
+            .heart:after {
+                width: 40px;
+                height: 64px;
+                left: 40px;
+            }
+            
+            .heart:after {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div class="container">
+        <h1>❤️ 爱心爱你 ❤️</h1>
+        
+        <div class="heart-container">
+            <div class="heart"></div>
+            <div class="heart" style="animation-delay: 0.2s"></div>
+            <div class="heart" style="animation-delay: 0.4s"></div>
+        </div>
+        
+        <div class="message">
+            <p>亲爱的小猪婷：</p>
+            <p>愿你每一天都被快乐围绕，每一刻都被幸福拥抱！</p>
+            <p>愿你的笑容永远灿烂如阳光，心情永远美丽如花朵！</p>
+            <p>无论何时何地，都有人深深爱着你，关心着你！</p>
+            <p>祝你永远开心，永远被爱！❤️</p>
+        </div>
+        
+        <div class="buttons">
+            <button class="btn btn-love" id="loveBtn">送出爱心</button>
+            <button class="btn btn-happy" id="happyBtn">传递快乐</button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>专属祝福 - 只为最特别的小猪婷 ❤️</p>
+    </footer>
+
+    <script>
+        // 创建飘动的心形
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const heartCount = 30;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 15 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                container.appendChild(heart);
+            }
+        }
+        
+        // 按钮交互效果
+        document.getElementById('loveBtn').addEventListener('click', function() {
+            alert('❤️ 爱心已送出！愿小猪婷感受到满满的爱意！ ❤️');
+            createHeartExplosion();
+        });
+        
+        document.getElementById('happyBtn').addEventListener('click', function() {
+            alert('😊 快乐已传递！愿小猪婷每天都有好心情！ 😊');
+            createHeartExplosion();
+        });
+        
+        // 创建爱心爆炸效果
+        function createHeartExplosion() {
+            const container = document.querySelector('.container');
+            const explosionCount = 20;
+            
+            for (let i = 0; i < explosionCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.innerHTML = '❤';
+                heart.style.position = 'absolute';
+                heart.style.left = '50%';
+                heart.style.top = '50%';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                heart.style.animation = `explode ${Math.random() * 1 + 1}s ease-out forwards`;
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 100 + 50;
+                const x = Math.cos(angle) * distance;
+                const y = Math.sin(angle) * distance;
+                
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.style.transform = `translate(${x}px, ${y}px)`;
+                    heart.style.opacity = '0';
+                }, 10);
+                
+                setTimeout(() => {
+                    document.body.removeChild(heart);
+                }, 1000);
+            }
+        }
+        
+        // 初始化页面
+        window.onload = function() {
+            createFloatingHearts();
+        };
+    </script>
+</body>
+</html>
